@@ -45,7 +45,7 @@
          <!-- content -->
          
         </div>
-        <!-- /.container-fluid -->
+        <!-- container-fluid -->
 
         <!-- footer section -->
           @stack('footer')

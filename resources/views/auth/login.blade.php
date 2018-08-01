@@ -26,30 +26,30 @@
 
     <div class="container">
       <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Login</div>
+        <div class="card-header">Admin login</div>
         <div class="card-body">
-          <form method="POST" action="{{ route('login') }}">
+          <form method="POST" id="loginform" action="{{ route('login') }}">
             {{ csrf_field() }}
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
               <div class="form-label-group">
                 <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+                <label for="inputEmail">Email address</label>
                   @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
                     </span>
                   @endif
-                <label for="inputEmail">Email address</label>
               </div>
             </div>
             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
               <div class="form-label-group">
                 <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                <label for="inputPassword">Password</label>
                   @if ($errors->has('password'))
                       <span class="help-block">
                           <strong>{{ $errors->first('password') }}</strong>
                       </span>
                   @endif
-                <label for="inputPassword">Password</label>
               </div>
             </div>
             <div class="form-group">
@@ -61,14 +61,9 @@
               </div>
             </div>
             <div class="form-group">
-                <div class="col-md-4 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
-                        Login
-                    </button>
-                </div>
-                <!-- <a class="btn btn-primary btn-block" href="index.html">Login</a> -->
+                <a class="btn btn-primary btn-block" href="#" onclick="event.preventDefault();
+        document.getElementById('loginform').submit();">Login</a>
             </div>
-            <!-- <a class="btn btn-primary btn-block" href="index.html">Login</a> -->
           </form>
           <div class="text-center">
             <!-- <a class="d-block small mt-3" href="{{ route('register') }}">Register an Account</a> -->
