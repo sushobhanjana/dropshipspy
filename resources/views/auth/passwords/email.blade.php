@@ -32,17 +32,31 @@
             <h4>Forgot your password?</h4>
             <p>Enter your email address and we will send you instructions on how to reset your password.</p>
           </div>
-          <form>
-            <div class="form-group">
+          @if (session('status'))
+              <div class="alert alert-success">
+                  {{ session('status') }}
+              </div>
+          @endif
+          <form id="resetrequestform" method="POST" action="{{ route('password.email') }}">
+            
+            {{ csrf_field() }}
+
+            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Enter email address" required="required" autofocus="autofocus">
+                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Enter email address" value="{{ old('email') }}" required="required" autofocus="autofocus">
                 <label for="inputEmail">Enter email address</label>
+
+                 @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                 @endif
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="login.html">Reset Password</a>
+            <a class="btn btn-primary btn-block" href="#" onclick="event.preventDefault();
+        document.getElementById('resetrequestform').submit();">Send Password Reset Link</a>
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="{{ route('register') }}">Register an Account</a>
             <a class="d-block small" href="{{ route('login') }}">Login Page</a>
           </div>
         </div>
